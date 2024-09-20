@@ -22,9 +22,10 @@ Clone from source:
 git clone https://github.com/vnzinki/psai.git (Join-Path -Path $env:USERPROFILE -ChildPath "Documents\PowerShell\Modules\PsAI")
 ```
 
-Then import Module
+Then auto Import Module by add line to your profile:
 ```
-Import-Module PsAI
+Add-Content -Path $PROFILE -Value 'if (Get-Module -Name PsAI -ListAvailable) { Import-Module PsAI }'
+
 ```
 
 ## How do I use it?

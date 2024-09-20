@@ -50,7 +50,7 @@ if (-not (Get-Command -Name Set-PSReadlineKeyHandler -ErrorAction SilentlyContin
   return
 }
 else {
-  Write-Host "PSReadline is installed! You can use hot key Ctrl+x to suggest command using AI"
+  Write-Host "PsAI with PSReadline actived! You can use hot key Ctrl+x to suggest command using AI"
   Get-Config
 }
 
