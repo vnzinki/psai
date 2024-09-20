@@ -22,10 +22,11 @@ function Get-Config {
 
 function Set-Config {
   $configContent = @{
-    Provider = Read-Host "Please enter the provider name (OpenAI, Gemini)"
+    Provider = Read-Host "Provider name (currently only suport OpenAI)" -DefaultValue "OpenAI"
     OpenAI   = @{
-      BaseUrl = Read-Host "Please enter the base URL for OpenAI"
-      ApiKey  = Read-Host "Please enter your API key for OpenAI"
+      BaseUrl = Read-Host "Base URL for OpenAI" -DefaultValue "https://api.openai.com/v1"
+      ApiKey  = Read-Host "API key for OpenAI"
+      Model  = Read-Host "Model for OpenAI" -DefaultValue "gpt-3.5-turbo"
     }
   }
   $configContent | ConvertTo-Json | Set-Content -Path $Global:configPath

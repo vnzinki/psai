@@ -5,6 +5,10 @@
   Write what you want, press hot key `ctrl+x` to get the command.
 </p>
 
+<p align="center">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/GeJlDrPWQLk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</p>
+
 ## Todo
 - [x] Add option to set AI model
 - [x] Add option to set API key

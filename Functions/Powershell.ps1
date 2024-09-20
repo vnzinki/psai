@@ -35,7 +35,7 @@ function PsAI {
 
   Get-Config
 
-  $Context = "$($PSVersionTable.Platform) $($PSVersionTable.OS) Powershell $($PSVersionTable.PSEdition) $($PSVersionTable.PSVersion)"
+  $Context = "Powershell $($PSVersionTable.PSEdition) $($PSVersionTable.PSVersion) expert working on $($PSVersionTable.Platform) $($PSVersionTable.OS)"
 
   switch ($Global:Config.Provider) {
     "OpenAI" {
