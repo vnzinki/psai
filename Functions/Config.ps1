@@ -22,10 +22,10 @@ function Get-Config {
 
 function Set-Config {
   $configContent = @{
-    Provider = Read-Host "Please enter the provider name (ChatGPT, Gemini)"
-    ChatGPT  = @{
-      BaseUrl = Read-Host "Please enter the base URL for ChatGPT"
-      ApiKey  = Read-Host "Please enter your API key for ChatGPT"
+    Provider = Read-Host "Please enter the provider name (OpenAI, Gemini)"
+    OpenAI   = @{
+      BaseUrl = Read-Host "Please enter the base URL for OpenAI"
+      ApiKey  = Read-Host "Please enter your API key for OpenAI"
     }
   }
   $configContent | ConvertTo-Json | Set-Content -Path $Global:configPath

@@ -38,8 +38,8 @@ function PsAI {
   $Context = "$($PSVersionTable.Platform) $($PSVersionTable.OS) Powershell $($PSVersionTable.PSEdition) $($PSVersionTable.PSVersion)"
 
   switch ($Global:Config.Provider) {
-    "ChatGPT" {
-      Add-ToInputPrompt $(ChatGPTGetCompletion $Context $Prompt)
+    "OpenAI" {
+      Add-ToInputPrompt $(OpenAIGetCompletion $Context $Prompt)
     }
     Default {}
   }

@@ -3,8 +3,8 @@ Import-Module "$PSScriptRoot/../PsAI.psd1" -Force
 Describe "Config" {
   It "should load config" {
     $configContent = @{
-      Provider = "ChatGPT"
-      ChatGPT  = @{
+      Provider = "OpenAI"
+      OpenAI  = @{
         BaseUrl = "https://api.groq.com/openai/v1"
         ApiKey  = "YOUR_API_KEY"
         Model   = "llama3-8b-8192"

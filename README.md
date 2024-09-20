@@ -39,8 +39,8 @@ When you first run PsAI, it will prompt you to create a config file.
 
 ```
 {
-  "Provider": "ChatGPT", # TODO: Add support for Gemini
-  "ChatGPT": {
+  "Provider": "OpenAI", # TODO: Add support for Gemini
+  "OpenAI": {
     "Model": "gpt-4o",
     "ApiKey": "YOUR_API_KEY",
     "BaseUrl": "https://api.openai.com/v1" # Your can use https://api.groq.com/openai/v1

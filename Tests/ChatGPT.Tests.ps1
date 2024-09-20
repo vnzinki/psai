@@ -1,12 +1,12 @@
 Import-Module "$PSScriptRoot/../PsAI.psd1" -Force
 
-Describe "ChatGPT" {
-  It "ChatGPT API Endpoint" {
-    $ApiKey = $Global:Config.ChatGPT.ApiKey
-    $Global:Config.ChatGPT.ApiKey = "WRONG_API_KEY"
+Describe "OpenAI" {
+  It "OpenAI API Endpoint" {
+    $ApiKey = $Global:Config.OpenAI.ApiKey
+    $Global:Config.OpenAI.ApiKey = "WRONG_API_KEY"
 
-    ChatGPTGetCompletion("find process running port 4200 then kill") | Should -Be "Error: Invalid API Key"
+    OpenAIGetCompletion("find process running port 4200 then kill") | Should -Be "Error: Invalid API Key"
 
-    $Global:Config.ChatGPT.ApiKey = $ApiKey
+    $Global:Config.OpenAI.ApiKey = $ApiKey
   }
 }
