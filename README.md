@@ -17,7 +17,15 @@
 
 ## How do I install it?
 
-TODO:
+Clone from source:
+```
+git clone https://github.com/vnzinki/psai.git (Join-Path -Path $env:USERPROFILE -ChildPath "Documents\PowerShell\Modules\PsAI")
+```
+
+Then import Module
+```
+Import-Module PsAI
+```
 
 ## How do I use it?
 To use PsAI, simply type a description of what you want to do, and then press the hot key `ctrl+x`. PsAI will then fill the console with the command to accomplish what you described.
@@ -26,6 +34,7 @@ To use PsAI, simply type a description of what you want to do, and then press th
 ## Config
 
 Config file `.psai` is stored in `$env:USERPROFILE\.psai`
+When you first run PsAI, it will prompt you to create a config file.
 
 ```
 {
