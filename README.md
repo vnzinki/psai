@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <a target="_blank" href="https://www.youtube.com/watch?v=GeJlDrPWQLk">
+  <a target="_blank" href="https://www.youtube.com/watch?v=vpAhpGeIIFs">
     <img src="psai.demo.gif" align="center" width="70%" height="70%"/>
   </a>
 </p>
