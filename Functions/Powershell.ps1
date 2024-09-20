@@ -1,6 +1,5 @@
 # Use SendKeys to paste to the current line in the console
 Add-Type -AssemblyName System.Windows.Forms
-$DebugPreference = 'SilentContinue'
 
 function Add-ToInputPrompt {
   <#
@@ -34,6 +33,9 @@ function PsAI {
   }
 
   Get-Config
+  if (-not $Global:Config) {
+    Set-Config
+  }
 
   $Context = "Powershell $($PSVersionTable.PSEdition) $($PSVersionTable.PSVersion) expert working on $($PSVersionTable.Platform) $($PSVersionTable.OS)"
 
@@ -50,8 +52,11 @@ if (-not (Get-Command -Name Set-PSReadlineKeyHandler -ErrorAction SilentlyContin
   return
 }
 else {
-  Write-Host "PsAI with PSReadline actived! You can use hot key Ctrl+x to suggest command using AI"
   Get-Config
+  if (-not $Global:Config) {
+    Set-Config
+  }
+  Write-Host "PsAI with PSReadline actived! You can use hot key Ctrl+x to suggest command using AI"
 }
 
 # Set up a key binding for Ctrl+x to suggest command completions

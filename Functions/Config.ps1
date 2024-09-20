@@ -1,34 +1,48 @@
 $Global:configPath = "$env:USERPROFILE\.psai"
 
 function Get-Config {
-  if (Test-Path -Path $configPath) {
-    try {
-      $configContent = Get-Content -Path $Global:configPath -Raw | ConvertFrom-Json
+  try {
+    if (-not (Test-Path -Path $configPath)) {
+      throw [System.IO.FileNotFoundException]::new("Config file not found: $configPath")
+    }
 
-      $Global:Config = $configContent
-      Write-Debug "Loaded config from $Global:configPath using Provider: $($Global:Config.Provider)"
-    }
-    catch {
-      Write-Warning "Failed to parse the config file: $_"
-      Remove-Item -Path $Global:configPath
-    }
+    $Global:Config = Get-Content -Path $Global:configPath -Raw | ConvertFrom-Json
+
+    Write-Debug "Loaded config from $Global:configPath using Provider: $($Global:Config.Provider)"
   }
-  else {
-    Write-Warning "Config file not found at $Global:configPath. Creating a new one."
-    Set-Config
-    return $null
+  catch {
+    Write-Warning "Failed to parse the config file: $($_.Exception.Message)"
   }
 }
 
 function Set-Config {
-  $configContent = @{
-    Provider = Read-Host "Provider name (currently only suport OpenAI)" -DefaultValue "OpenAI"
-    OpenAI   = @{
-      BaseUrl = Read-Host "Base URL for OpenAI" -DefaultValue "https://api.openai.com/v1"
-      ApiKey  = Read-Host "API key for OpenAI"
-      Model  = Read-Host "Model for OpenAI" -DefaultValue "gpt-3.5-turbo"
+  $InputConfig = @{
+    Provider = "OpenAI"
+    OpenAI = @{
+      BaseUrl = ""
+      ApiKey = ""
+      Model = ""
     }
   }
-  $configContent | ConvertTo-Json | Set-Content -Path $Global:configPath
-  Get-Config
+
+  # $InputConfig.Provider = Read-Host "Provider name (currently only support OpenAI)"
+  $InputConfig.OpenAI.BaseUrl = Read-Host "Base URL for OpenAI (default: https://api.groq.com/openai/v1)"
+  $InputConfig.OpenAI.Model = Read-Host "Model for OpenAI (default: llama3-groq-70b-8192-tool-use-preview)"
+  $InputConfig.OpenAI.ApiKey = Read-Host "API key for OpenAI"
+
+  # Apply default values
+  if ($InputConfig.OpenAI.BaseUrl -eq "") {
+    $InputConfig.OpenAI.BaseUrl = "https://api.groq.com/openai/v1"
+  }
+
+  if ($InputConfig.OpenAI.Model -eq "") {
+    $InputConfig.OpenAI.Model = "llama3-groq-70b-8192-tool-use-preview"
+  }
+
+  if ($InputConfig.OpenAI.ApiKey -eq "") {
+    Write-Host "API key cannot be empty" -ForegroundColor Red
+    return
+  }
+
+  $InputConfig | ConvertTo-Json | Set-Content -Path $Global:configPath
 }

@@ -8,20 +8,23 @@ function OpenAIGetCompletion ([string] $Context, [string] $Prompt) {
   } | ConvertTo-Json
 
   $Headers = @{
-    Authorization  = "Bearer $($Global:Config.OpenAI.ApiKey)"
+    "Authorization"  = "Bearer $($Global:Config.OpenAI.ApiKey)"
     "Content-Type" = "application/json"
   }
 
+  Write-Debug "Uri: $($Global:Config.OpenAI.BaseUrl)/chat/completions"
+  Write-Debug "Headers: $($Headers | ConvertTo-Json)"
   Write-Debug "Request: $Body"
 
   try {
-    $Response = Invoke-WebRequest -Uri "$($Global:Config.OpenAI.BaseUrl)/chat/completions" -Method Post -Body $body -Headers $Headers
+    $Response = Invoke-WebRequest -Uri "$($Global:Config.OpenAI.BaseUrl)/chat/completions" -Method Post -Body $body -Headers $Headers -TimeoutSec 10
   }
   catch {
-    $ApiError = $($_ | ConvertFrom-Json)
-    return "Error: $($ApiError.error.message)"
+    Write-Host "Request failed: $($_.Exception.Message)" -ForegroundColor Red
+    exit
   }
 
+  Write-Debug "Response: $($Response.Content)"
   $ResponseObject = $Response.Content | ConvertFrom-Json
   return $ResponseObject.choices[0].message.content
 }
