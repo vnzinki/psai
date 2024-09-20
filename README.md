@@ -6,15 +6,15 @@
 </p>
 
 <p align="center">
-  <a href="https://www.youtube.com/watch?v=GeJlDrPWQLk">
-    <img src="https://img.youtube.com/vi/GeJlDrPWQLk/0.jpg" style="width:100%;">
+  <a target="_blank" href="https://www.youtube.com/watch?v=GeJlDrPWQLk">
+    <img src="psai.demo.gif" align="center" width="70%" height="70%"/>
   </a>
 </p>
 
 ## Todo
-- [x] Add option to set AI model
-- [x] Add option to set API key
-- [x] Add option to set base URL
+- [x] Support OpenAPI
+- [x] Dynamic config
+- [ ] Handle network errors
 - [ ] Add Gemini support
 - [ ] Better config initialization
 - [ ] Use last error to enrich the suggestion
