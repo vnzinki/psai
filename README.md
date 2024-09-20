@@ -1,8 +1,7 @@
 <h1 align="center">PsAI</h1>
 
 <p align="center">
-  A User-Friendly Module for PowerShell command suggestion using AI. <br/>
-  Write what you want, press hot key `ctrl+x` to get the command.
+  A User-Friendly Module for PowerShell command suggestion using AI.
 </p>
 
 <p align="center">
@@ -35,7 +34,12 @@ Add-Content -Path $PROFILE -Value 'if (Get-Module -Name PsAI -ListAvailable) { I
 
 ## How do I use it?
 To use PsAI, simply type a description of what you want to do, and then press the hot key `ctrl+x`. PsAI will then fill the console with the command to accomplish what you described.
-
+<br/>
+<br/>
+If you dont have PSReadLine installed, you can also use `PsAI` to get the command suggestion. Try it yourself:
+```
+PsAI "run docker postgresql on port 27001 with data from ./storage folder"
+```
 
 ## Config
 

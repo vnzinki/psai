@@ -47,15 +47,16 @@ function PsAI {
   }
 }
 
+# Load config
+Get-Config
+if (-not $Global:Config) {
+  Set-Config
+}
+
 if (-not (Get-Command -Name Set-PSReadlineKeyHandler -ErrorAction SilentlyContinue)) {
   Write-Warning "The module PSReadline is required for binding the key. Please install it with 'Install-Module -Name PSReadline -AllowPrerelease'"
-  return
 }
 else {
-  Get-Config
-  if (-not $Global:Config) {
-    Set-Config
-  }
   Write-Host "PsAI with PSReadline actived! You can use hot key Ctrl+x to suggest command using AI"
 }
 
