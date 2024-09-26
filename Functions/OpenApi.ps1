@@ -12,12 +12,11 @@ function OpenAIGetCompletion ([string] $Context, [string] $Prompt) {
     "Content-Type" = "application/json"
   }
 
-  Write-Debug "Uri: $($Global:Config.OpenAI.BaseUrl)/chat/completions"
   Write-Debug "Headers: $($Headers | ConvertTo-Json)"
   Write-Debug "Request: $Body"
 
   try {
-    $Response = Invoke-WebRequest -Uri "$($Global:Config.OpenAI.BaseUrl)/chat/completions" -Method Post -Body $body -Headers $Headers -TimeoutSec 10
+    $Response = Invoke-WebRequest -Uri "https://api.openai.com/v1/chat/completions" -Method Post -Body $body -Headers $Headers -TimeoutSec 10
   }
   catch {
     Write-Host "Request failed: $($_.Exception.Message)" -ForegroundColor Red

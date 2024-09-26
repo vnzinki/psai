@@ -40,6 +40,12 @@ function PsAI {
   $Context = "Powershell $($PSVersionTable.PSEdition) $($PSVersionTable.PSVersion) expert working on $($PSVersionTable.Platform) $($PSVersionTable.OS)"
 
   switch ($Global:Config.Provider) {
+    "Groq" {
+      Add-ToInputPrompt $(GroqGetCompletion $Context $Prompt)
+    }
+    "Gemini" {
+      Add-ToInputPrompt $(GeminiGetCompletion $Context $Prompt)
+    }
     "OpenAI" {
       Add-ToInputPrompt $(OpenAIGetCompletion $Context $Prompt)
     }
@@ -49,7 +55,7 @@ function PsAI {
 
 # Load config
 Get-Config
-if (-not $Global:Config) {
+if (-not $Global:Config.$($Global:Config.Provider).ApiKey) {
   Set-Config
 }
 
