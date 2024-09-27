@@ -14,7 +14,7 @@
 - [x] Support OpenAPI
 - [x] Dynamic config
 - [x] Better config initialization
-- [ ] Add Gemini support
+- [x] Add Gemini support
 - [ ] Use last error to enrich the suggestion
 - [ ] Publish-Module
 
