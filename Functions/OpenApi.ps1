@@ -1,15 +1,15 @@
 function OpenAIGetCompletion ([string] $Context, [string] $Prompt) {
   $Body = @{
     messages = @(
-      @{role = "system"; content = "You are a $Context, please help me complete the following command, you should only output the completed command in one line with minimal dependency, no need to include any other explanation. Do not put completed command in a code block." },
+      @{role = "system"; content = "You are a $Context, please help me complete the following command, you should only output the completed command in one line with minimal dependency, no need to include any other explanation. Command is one line only and not wrap in code block." },
       @{role = "user"; content = "$Prompt" }
     )
     model    = $Global:Config.OpenAI.Model
   } | ConvertTo-Json
 
   $Headers = @{
-    "Authorization"  = "Bearer $($Global:Config.OpenAI.ApiKey)"
-    "Content-Type" = "application/json"
+    "Authorization" = "Bearer $($Global:Config.OpenAI.ApiKey)"
+    "Content-Type"  = "application/json"
   }
 
   Write-Debug "Headers: $($Headers | ConvertTo-Json)"

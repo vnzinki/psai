@@ -2,10 +2,10 @@ function GeminiGetCompletion ([string] $Context, [string] $Prompt) {
   $Body = @{
     system_instruction = @{
       parts = @{
-        text = "You are a $Context, please help me complete the following command, you should only output the completed command in one line with minimal dependency, no need to include any other explanation. Do not put completed command in a code block."
+        text = "You are a $Context, please help me complete the following command, you should only output the completed command in one line with minimal dependency, no need to include any other explanation. Command is one line only and not wrap in code block."
       }
     }
-    contents = @{
+    contents           = @{
       parts = @{
         text = $Prompt
       }
